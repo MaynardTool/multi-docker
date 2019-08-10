@@ -1,0 +1,36 @@
+{
+    "AWSEBDockerrunversion": 2,
+    "containerDefinitions": [
+        {
+            "name": "client",
+            "image": "edidock901/multi-client",
+            "hostname": "client",
+            "essential": false
+        },
+        {
+            "name": "server",
+            "image": "edidock901/multi-server",
+            "hostname": "server",
+            "essential": false
+        },
+        {
+            "name": "worker",
+            "image": "edidock901/multi-worker",
+            "hostname": "worker",
+            "essential": false
+        },
+        {
+            "name": "nginx",
+            "image": "edidock901/multi-nginx",
+            "hostname": "nginx",
+            "essential": true,
+            "portMappings": [
+                {
+                    "hostPort": 80,
+                    "containerPort": 80
+                }
+            ],
+            "links": ["client", "server"]
+        }
+    ]
+}
